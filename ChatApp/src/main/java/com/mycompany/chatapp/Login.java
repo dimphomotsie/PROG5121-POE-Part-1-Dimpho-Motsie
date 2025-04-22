@@ -25,7 +25,7 @@ public class Login {
     String lastName;
 
     
-    // Constructor to create a new user
+    
     public Login(String username, String password, String cellNumber, String firstName, String lastName) {
         this.username = username;
         this.password = password;
