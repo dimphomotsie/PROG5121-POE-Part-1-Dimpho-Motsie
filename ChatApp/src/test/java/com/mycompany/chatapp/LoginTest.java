@@ -38,7 +38,7 @@ public class LoginTest {
     @Test
     public void testCheckUserName_Invalid() {
         Login u = new Login("Kyle!!!!!!!", "Ch&&sec@ke99!", "+27838968976", "Kyle", "Smith");
-        assertFalse(u.checkUserName(), "Username should be invalid due to length or missing underscore.");
+        assertFalse(u.checkUserName(), "Username incorrectly formatted");
     }
 
     /**
@@ -46,14 +46,14 @@ public class LoginTest {
      */
     @Test
     public void testCheckPasswordComplexity() {
-        assertTrue(user.checkPasswordComplexity(), "Password should meet complexity requirements.");
+        assertTrue(user.checkPasswordComplexity(), "Password meets complexity requirements.");
     }
 
     // Test invalid password (too simple)
     @Test
     public void testCheckPasswordComplexity_Invalid() {
         Login u = new Login("kyl_1", "password", "+27838968976", "Kyle", "Smith");
-        assertFalse(u.checkPasswordComplexity(), "Password should be invalid due to lack of complexity.");
+        assertFalse(u.checkPasswordComplexity(), "Password does not meet complexity requirements.");
     }
 
     /**
@@ -61,14 +61,14 @@ public class LoginTest {
      */
     @Test
     public void testCheckCellPhoneNumber() {
-        assertTrue(user.checkCellPhoneNumber(), "Cell number should be valid.");
+        assertTrue(user.checkCellPhoneNumber(), "Cell phone number correctly formatted.");
     }
 
     // Test invalid phone number (missing +27, too short)
     @Test
     public void testCheckCellPhoneNumber_Invalid() {
         Login u = new Login("kyl_1", "Ch&&sec@ke99!", "08966553", "Kyle", "Smith");
-        assertFalse(u.checkCellPhoneNumber(), "Cell number should be invalid due to incorrect format.");
+        assertFalse(u.checkCellPhoneNumber(), "Cell phone number incorrectly formatted.");
     }
 
     /**
@@ -82,7 +82,7 @@ public class LoginTest {
     // Test registration with invalid username
     @Test
     public void testRegisterUser_InvalidUsername() {
-        Login u = new Login("kyle", "Ch&&sec@ke99!", "+27838968976", "Kyle", "Smith");
+        Login u = new Login("kyle!!!!!!!!", "Ch&&sec@ke99!", "+27838968976", "Kyle", "Smith");
         assertEquals("Username is not correctly formatted, please ensure that your username contains an underscore and is no more than five characters in length.", u.registerUser());
     }
 
@@ -95,7 +95,8 @@ public class LoginTest {
 
     // Test registration with invalid phone number
     @Test
-    public void testRegisterUser_InvalidPhone() {
+    public void testRegisterUser_InvalidPhone()
+    {
         Login u = new Login("kyl_1", "Ch&&sec@ke99!", "08966553", "Kyle", "Smith");
         assertEquals("Cell phone number incorrectly formatted or does not contain international code.", u.registerUser());
     }
@@ -125,7 +126,7 @@ public class LoginTest {
     // Test login status message for invalid login
     @Test
     public void testReturnLoginStatus_Failure() {
-        assertEquals("Username or password incorrect, please try again.", user.returnLoginStatus("wrong", "123"));
+        assertEquals("Username or password incorrect, please try again.", user.returnLoginStatus("kyle!!!!!!!!", "password"));
     }
     
 }
